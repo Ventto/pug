@@ -1,5 +1,8 @@
 #!/bin/bash
 
+filenat="arch-pkg.native"
+fileaur="arch-pkg.aur"
+
 bacpac_install(){
 
     gist --login;
@@ -8,8 +11,6 @@ bacpac_install(){
 
     echo "2: Creating installed packages lists.";
 
-    local filenat="arch-pkg.native"
-    local fileaur="arch-pkg.aur"
 
     GIST_URL_NAT=$(pacman -Qqen | \
         gist -p -f "${filenat}" -d "install: Added native packages.")
@@ -29,22 +30,21 @@ bacpac_update(){
 
     echo -e "\nUpdating package list backup on GitHub...";
 
-    if pacman -Qqen | gist -u "$GIST_ID"; then
+    if pacman -Qqen | gist -u "$GIST_NAT" -f "${filenat}"; then
         echo -e "bacpac: native - [OK]\n";
     else
         echo -e "bacpac: native - [FAILED]\n";
     fi
 
-    if pacman -Qqem | gist -u "$GIST_ID"; then
+    if pacman -Qqem | gist -u "$GIST_AUR" -f "${fileaur}"; then
         echo -e "bacpac: aur - [OK]\n";
     else
         echo -e "bacpac: aur - [FAILED]\n";
     fi
-
-
 }
 
 bacpac(){
+
     # Add Ruby to PATH
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
@@ -57,7 +57,7 @@ bacpac(){
     if [ -z "$GIST_NAT" ] || [ -z "$GIST_AUR" ]; then
         echo "1: Fresh install detected."
     else
-        update;
+        bacpac_update;
     fi
 }
 

@@ -14,18 +14,18 @@ sha256sums=('SKIP')
 
 package() {
 
-  # Install and save file
+  # Install config
   mkdir -p "${pkgdir}/etc/"
   touch "${pkgdir}/etc/bacpac"
 
   # Install script
   mkdir -p "${pkgdir}/usr/lib/bacpac"
-  cp "${srcdir}/${pkgname}-master/src/bacpac.sh" "${pkgdir}/usr/lib/bacpac/bacpac.sh"
-  chmod +x "${pkgdir}/usr/lib/bacpac/bacpac.sh"
+  cd ${srcdir}/${pkgname}-master
+  install -Dm755 src/bacpac.sh ${pkgdir}/usr/lib/bacpac/bacpac.sh
 
-  # Install Hook
-  mkdir -p "${pkgdir}/usr/share/libalpm/hooks"
-  cp "${srcdir}/${pkgname}-master/src/bacpac.hook" "${pkgdir}/usr/share/libalpm/hooks/bacpac.hook"
+  # Install hook
+  mkdir -p ${pkgdir}/usr/share/libalpm/hooks
+  install -Dm644 src/bacpac.hook ${pkgdir}/usr/share/libalpm/hooks/bacpac.hook
 
-  source "${pkgdir}/usr/lib/bacpac/bacpac.sh"; bacpac_install;
+  source ${pkgdir}/usr/lib/bacpac/bacpac.sh; bacpac_install;
 }

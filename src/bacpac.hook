@@ -1,6 +1,3 @@
-# Bacpac (Pacmanity's fork)
-# Saves a copy of package list to Gist after each update.
-
 [Trigger]
 Operation = Install
 Operation = Upgrade

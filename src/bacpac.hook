@@ -1,0 +1,14 @@
+# Bacpac (Pacmanity's fork)
+# Saves a copy of package list to Gist after each update.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Depends = coreutils
+When = PostTransaction
+Exec = /usr/lib/bacpac/bacpac.sh

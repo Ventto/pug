@@ -2,7 +2,7 @@
 pkgname="bacpac"
 pkgver=1
 pkgrel=1
-pkgdesc="Saves the list of packages installed via pacman. (pacmanity's fork)"
+pkgdesc="Saves the list of packages installed via Pacman and AUR helper."
 url=""
 arch=('x86_64' 'i686')
 license=('GPL')

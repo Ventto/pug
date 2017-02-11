@@ -1,61 +1,61 @@
 #!/bin/bash
 
-filenat="arch-pkg.native"
-fileaur="arch-pkg.aur"
+bacpac_install() {
+    if ! gist --login ; then
+        exit 1
+    fi
 
-bacpac_install(){
-
-    gist --login;
-    mkdir -p $pkgdir/root;
-    cp ~/.gist $pkgdir/root/.gist;
+    mkdir -p "${pkgdir}/root";
+    cp ~/.gist "${pkgdir}/root/.gist";
 
     echo "2: Creating installed packages lists.";
 
-
     GIST_URL_NAT=$(pacman -Qqen | \
-        gist -p -f "${filenat}" -d "install: Added native packages.")
+        gist -p -f 'arch-pkg.native' -d "install: Added native packages.")
+
     GIST_URL_AUR=$(pacman -Qqem | \
-        gist -p -f "${fileaur}" -d "install: Added aur packages.")
+        gist -p -f 'arch-pkg.aur' -d "install: Added aur packages.")
 
     echo "3: Gist links:"
-    echo "GIST_NAT=$GIST_URL_NAT" | \
-        sed 's/https:\/\/gist.github.com\///g' >> $pkgdir/etc/bacpac;
-    echo "GIST_AUR=$GIST_URLèAUR" | \
-        sed 's/https:\/\/gist.github.com\///g' >> $pkgdir/etc/bacpac;
-    echo "$filenat: $GIST_NAT"
-    echo "$fileaur: $GIST_AUR"
+    echo "GIST_NAT=${GIST_URL_NAT}" | \
+        sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/bacpac";
+    echo "GIST_AUR=${GIST_URL_AUR}" | \
+        sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/bacpac";
+    echo "${GIST_URL_NAT}"
+    echo "${GIST_URL_AUR}"
 }
 
-bacpac_update(){
+bacpac_update() {
 
-    echo -e "\nUpdating package list backup on GitHub...";
+    echo 'bacpac: updating package list...';
 
-    if pacman -Qqen | gist -u "$GIST_NAT" -f "${filenat}"; then
-        echo -e "bacpac: native - [OK]\n";
+    echo -n 'bacpac: native - ';
+    if pacman -Qqen | gist -u "${GIST_NAT}"; then
+        echo '[OK]';
     else
-        echo -e "bacpac: native - [FAILED]\n";
+        echo '[FAILED]'; exit 1
     fi
 
-    if pacman -Qqem | gist -u "$GIST_AUR" -f "${fileaur}"; then
-        echo -e "bacpac: aur - [OK]\n";
+    echo -n 'bacpac: aur - ';
+    if pacman -Qqem | gist -u "${GIST_AUR}"; then
+        echo '[OK]';
     else
-        echo -e "bacpac: aur - [FAILED]\n";
+        echo '[FAILED]'; exit 1
     fi
 }
 
-bacpac(){
+bacpac() {
 
     # Add Ruby to PATH
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
     # Load config
-    [[ -r '/etc/bacpac' ]] && source $pkgdir/etc/bacpac
-
-    echo "Bacpac:"
+    [[ -r '/etc/bacpac' ]] && source "$pkgdir/etc/bacpac"
 
     # Determine if fresh install is needed
-    if [ -z "$GIST_NAT" ] || [ -z "$GIST_AUR" ]; then
-        echo "1: Fresh install detected."
+    if [ -z "${GIST_NAT}" ] || [ -z "${GIST_AUR}" ]; then
+        echo "bacpac: fresh install detected."
+        bacpac_install;
     else
         bacpac_update;
     fi

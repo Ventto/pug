@@ -1,0 +1,6 @@
+*/*
+
+!.gitignore
+!pkg/PKGBUILD
+!src/bacpac.hook
+!src/bacpac.sh

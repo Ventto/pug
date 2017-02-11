@@ -8,7 +8,7 @@ bacpac_install() {
     mkdir -p "${pkgdir}/root";
     cp ~/.gist "${pkgdir}/root/.gist";
 
-    echo "2: Creating installed packages lists.";
+    echo "1: Creating installed packages lists.";
 
     GIST_URL_NAT=$(pacman -Qqen | \
         gist -p -f 'arch-pkg.native' -d "install: Added native packages.")
@@ -16,7 +16,7 @@ bacpac_install() {
     GIST_URL_AUR=$(pacman -Qqem | \
         gist -p -f 'arch-pkg.aur' -d "install: Added aur packages.")
 
-    echo "3: Gist links:"
+    echo "2: Gist links:"
     echo "GIST_NAT=${GIST_URL_NAT}" | \
         sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/bacpac";
     echo "GIST_AUR=${GIST_URL_AUR}" | \
@@ -29,18 +29,16 @@ bacpac_update() {
 
     echo 'bacpac: updating package list...';
 
-    echo -n 'bacpac: native - ';
     if pacman -Qqen | gist -u "${GIST_NAT}"; then
-        echo '[OK]';
+        echo 'bacpac: native - [OK]';
     else
-        echo '[FAILED]'; exit 1
+        exit 1;
     fi
 
-    echo -n 'bacpac: aur - ';
     if pacman -Qqem | gist -u "${GIST_AUR}"; then
-        echo '[OK]';
+        echo -n 'bacpac: aur - [OK]';
     else
-        echo '[FAILED]'; exit 1
+        exit 1;
     fi
 }
 

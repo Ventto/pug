@@ -55,7 +55,6 @@ bacpac() {
     # Determine if fresh install is needed
     if [ -z "${GIST_NAT}" ] || [ -z "${GIST_AUR}" ]; then
         echo "bacpac: fresh install detected."
-        bacpac_install;
     else
         bacpac_update;
     fi

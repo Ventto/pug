@@ -1,10 +1,10 @@
 CFGDIR  = $(DESTDIR)/etc
 HOOKDIR = $(DESTDIR)/usr/share/libalpm/hooks
-BINDIR  = $(DESTDIR)/usr/lib/bacpac
+BINDIR  = $(DESTDIR)/usr/lib/pug
 
-CFG		= bacpac
-HOOK	= src/bacpac.hook
-SCRIPT	= src/bacpac.sh
+CFG		= pug
+HOOK	= src/pug.hook
+SCRIPT	= src/pug.sh
 
 all:
 
@@ -16,7 +16,7 @@ install:
 	@chmod 644 $(CFGDIR)/$(shell basename $(CFG))
 	@cp $(SCRIPT) $(BINDIR)
 	@chmod 755 $(BINDIR)/$(shell basename $(SCRIPT))
-	@source $(BINDIR)/$(shell basename $(SCRIPT)); bacpac_install "$(DESTDIR)";
+	@source $(BINDIR)/$(shell basename $(SCRIPT)); pug_install "$(DESTDIR)";
 	@cp $(HOOK) $(HOOKDIR)
 	@chmod 644 $(HOOKDIR)/$(shell basename $(HOOK))
 

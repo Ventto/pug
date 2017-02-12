@@ -8,4 +8,4 @@ Target = *
 [Action]
 Depends = coreutils
 When = PostTransaction
-Exec = /usr/lib/bacpac/bacpac.sh
+Exec = /usr/lib/pug/pug.sh

@@ -41,7 +41,7 @@ pug_install() {
 }
 
 pug_update() {
-    echo "${bold}${cyan}:: ${white} Processing gists update...${normal}"
+    echo "${bold}${cyan}::${white} Processing gists update...${normal}"
 
     if ! pacman -Qqen | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then exit 1; fi
     if ! pacman -Qqem | gist -u "${GIST_AUR}" -f "${AURFILE}";    then exit 1; fi

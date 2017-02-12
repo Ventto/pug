@@ -11,6 +11,8 @@ pug_install() {
 
     pkgdir="${1}"
 
+    echo "${bold}${green}==>${white} Authentification on Github..."
+
     if ! gist --login ; then exit 1; fi
 
     mkdir -p "${pkgdir}/root";
@@ -19,7 +21,6 @@ pug_install() {
         cp ~/.gist "${pkgdir}/root/.gist";
     fi
 
-    echo
     echo "${bold}${green}==>${white} Saving installed package lists to gists..."
     echo "${bold}${cyan}  ->${white} Creating packages lists..."
     echo "${bold}${cyan}  ->${white} Generating gist links..."
@@ -31,9 +32,9 @@ pug_install() {
         sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/pug";
     echo "GIST_AUR=${GIST_AUR}" | \
         sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/pug";
-    echo "    ${GIST_NAT}"
-    echo "    ${GIST_AUR}"
-    echo
+
+    echo "    [ ${cyan}${GIST_NAT}${white} ]"
+    echo "    [ ${cyan}${GIST_AUR}${white} ]"
 }
 
 pug_update() {
@@ -50,9 +51,7 @@ pug() {
 
     # Determine if fresh install is needed
     if test -z "${GIST_NAT}" || test -z "${GIST_AUR}"; then
-        echo "${bold}[pug]"
-        echo "${cyan}:: ${white}Fresh install is needed.${normal}"
-        echo
+        echo "${bold}${cyan}::${white} Pug: fresh install is needed.${normal}"
     else
         pug_update;
     fi

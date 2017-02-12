@@ -70,3 +70,9 @@ $ pacaur -S - < aur-list.txt
 
 Take a look at the sources into `src/pug.sh` or after installation into `/opt/pug/pug.sh`.
 
+# TODO
+
+* [ ] Pre-install, selecting package-list-Gists to generate (pacman or aur or both).
+* [ ] Once triggered, you can choice to do not apply change on Gists.
+* [ ] Avoiding a Gist revision if there is no modification in the package list.
+

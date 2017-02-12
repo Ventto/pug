@@ -1,7 +1,8 @@
 *
 
-!Makefile
 !.gitignore
+!Makefile
+!README.md
 !pkg/PKGBUILD
 !src/pug.hook
 !src/pug.sh

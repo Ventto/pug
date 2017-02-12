@@ -2,16 +2,18 @@ Pug
 ===
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/xpub/blob/master/LICENSE)
-[![Language (Bash)](https://img.shields.io/badge/powered_by-Gist-brightgreen.svg)](https://github.com/defunkt/gist)
+[![Tools (Gist)](https://img.shields.io/badge/powered_by-Gist-brightgreen.svg)](https://github.com/defunkt/gist)
 
-*"Pug is a post-transaction hook to save installed Pacman & AUR package lists into Gist files."*
+*"Pug is a way to save installed Pacman & AUR package lists into Gist files."*
+
+Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacmanity*](https://github.com/alexchernokun/pacmanity).
 
 ## Perks
 
 * [x] **Painless**: do not care about remembering installed packages on your system.
 * [x] **Triggers**: install/remove a package and system upgrade.
-* [x] **Usefull**: Gists used for quick install on another system.
-* [x] **Elegant**: Same terminal output template and colors than Pacman.
+* [x] **Elegant**: as built-in, uses Pacman's term-output template and colors.
+* [x] **Extra**: Gists used for quick install on another system.
 
 ## Requirements
 
@@ -24,23 +26,6 @@ Pug
 $ git clone https://github.com/Ventto/pug.git
 $ cd pug
 $ sudo make install    (default: INSTALLGIST=1)
-```
-
-
-
-## Example
-
-* Post-package-install trigger:
-```
-:: Proceed with installation? [Y/n] Y
-(1/1) checking keys in keyring        [##########] 100%
-[...]
-(1/1) checking available disk space   [##########] 100%
-:: Processing package changes...
-(1/1) installing package              [##########] 100%
-:: Running post-transaction hooks...
-(1/2) pug.hook
-:: Processing gists update...
 ```
 
 ## FAQ

@@ -24,8 +24,8 @@ pug_install() {
     echo "${bold}${cyan}  ->${white} Creating packages lists..."
     echo "${bold}${cyan}  ->${white} Generating gist links..."
 
-    GIST_NAT=$(pacman -Qqen | gist -p -f native-list.pkg)
-    GIST_AUR=$(pacman -Qqem | gist -p -f aur-list.pkg)
+    GIST_NAT=$(pacman -Qqen | gist -p -f native-list.pkg -d 'Pacman package list.')
+    GIST_AUR=$(pacman -Qqem | gist -p -f aur-list.pkg -d 'AUR package list.')
 
     echo "GIST_NAT=${GIST_NAT}" | \
         sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/pug";

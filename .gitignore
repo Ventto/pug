@@ -3,6 +3,17 @@
 !.gitignore
 !Makefile
 !README.md
+
+
+!pkg
+pkg/*
 !pkg/PKGBUILD
+
+!src
+src/*
 !src/pug.hook
 !src/pug.sh
+
+!doc/
+doc/*
+!doc/revisions.jpg

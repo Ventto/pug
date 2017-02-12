@@ -27,11 +27,23 @@ $ git clone https://github.com/Ventto/pug.git
 $ cd pug
 ```
 
-* You have the choice to save your actual package lists into Gists or not with `INSTALLGIST`:
+## Automatically
 
 ```bash
-$ sudo make install    (default: INSTALLGIST=1)
+$ cd pkg
+$ makepkg -i
 ```
+
+## Manually
+
+```
+$ sudo make install (default: INSTALLGIST=1, gists creation)
+$ sudo make uninstall
+```
+
+# Examples
+
+![Gist revisions](doc/revisions.jpg)
 
 # FAQ
 

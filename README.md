@@ -22,22 +22,23 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 
 # Installation
 
+### Package (AUR)
+
+```bash
+$ pacaur -S pug
+```
+
+### Manually
+
 ```bash
 $ git clone https://github.com/Ventto/pug.git
 $ cd pug
+$ sudo make install (default: INSTALLGIST=1, gists creation)
 ```
 
-## Automatically
+### Uninstall
 
 ```bash
-$ cd pkg
-$ makepkg -i
-```
-
-## Manually
-
-```
-$ sudo make install (default: INSTALLGIST=1, gists creation)
 $ sudo make uninstall
 ```
 

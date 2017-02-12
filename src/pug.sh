@@ -6,6 +6,9 @@ green="$(tput setaf 2)"
 cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 
+PACMANFILE='native-list.pkg'
+AURFILE='aur-list.pkg'
+
 pug_install() {
     [ -n "${1}" ] && [ ! -d "${1}" ] && exit 1
 
@@ -25,8 +28,8 @@ pug_install() {
     echo "${bold}${cyan}  ->${white} Creating packages lists..."
     echo "${bold}${cyan}  ->${white} Generating gist links..."
 
-    GIST_NAT=$(pacman -Qqen | gist -p -f native-list.pkg -d 'Pacman package list.')
-    GIST_AUR=$(pacman -Qqem | gist -p -f aur-list.pkg -d 'AUR package list.')
+    GIST_NAT=$(pacman -Qqen | gist -p -f "${PACMANFILE}" -d 'Pacman package list.')
+    GIST_AUR=$(pacman -Qqem | gist -p -f "${AURFILE}" -d 'AUR package list.')
 
     echo "GIST_NAT=${GIST_NAT}" | \
         sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/pug";
@@ -40,8 +43,8 @@ pug_install() {
 pug_update() {
     echo "${bold}${cyan}:: ${white} Processing gists update...${normal}"
 
-    if ! pacman -Qqen | gist -u "${GIST_NAT}" -f native-list.pkg ; then exit 1; fi
-    if ! pacman -Qqem | gist -u "${GIST_AUR}" -f aur-list.pkg;     then exit 1; fi
+    if ! pacman -Qqen | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then exit 1; fi
+    if ! pacman -Qqem | gist -u "${GIST_AUR}" -f "${AURFILE}";    then exit 1; fi
 }
 
 pug() {

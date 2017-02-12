@@ -8,10 +8,10 @@ license=('GPL')
 depends=('pacman>=5.0' 'gist>=4.5.0')
 makedepends=('make' 'git')
 url="https://github.com/Ventto/${pkgname}.git"
-source=("https://github.com/Ventto/${pkgname}/archive/master.zip")
+source=("https://github.com/Ventto/${pkgname}/archive/v${pkgver}.tar.gz")
 sha256sums=('SKIP')
 
 package() {
-  cd "${srcdir}/${pkgname}-master"
+  cd "${srcdir}/${pkgname}-${pkgver}"
   make DESTDIR="${pkgdir}" install
 }

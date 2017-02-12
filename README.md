@@ -34,18 +34,18 @@ $ sudo make install    (default: INSTALLGIST=1)
 
 The purpose of using Gist files is to quickly install your preferred packages on another system.
 
-* Quick install Pacman package list:
+* Quick install the Pacman package list:
 
 ```bash
-wget https://gist.githubusercontent.com/.../pacman-list.pkg
-pacman -S - < pacman-list.txt
+$ wget https://gist.githubusercontent.com/.../pacman-list.pkg
+$ pacman -S - < pacman-list.txt
 ```
 
-* Quick install AUR package list:
+* Quick install the AUR package list:
 
 ```bash
-wget https://gist.githubusercontent.com/.../aur-list.pkg
-pacaur -S - < aur-list.txt
+$ wget https://gist.githubusercontent.com/.../aur-list.pkg
+$ pacaur -S - < aur-list.txt
 ```
 
 ### Change Gist filenames

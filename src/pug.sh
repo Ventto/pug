@@ -6,7 +6,7 @@ green="$(tput setaf 2)"
 cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 
-PACMANFILE='native-list.pkg'
+PACMANFILE='pacman-list.pkg'
 AURFILE='aur-list.pkg'
 
 pug_install() {

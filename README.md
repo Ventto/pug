@@ -23,8 +23,10 @@ Pug
 ```bash
 $ git clone https://github.com/Ventto/pug.git
 $ cd pug
-$ sudo make install
+$ sudo make install    (default: INSTALLGIST=1)
 ```
+
+
 
 ## Example
 

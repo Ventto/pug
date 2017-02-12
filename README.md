@@ -20,17 +20,22 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 * *pacman* - A library-based package manager with dependency support
 * *gist* - Potentially the best command line gister
 
-## Install
+# Installation
 
 ```bash
 $ git clone https://github.com/Ventto/pug.git
 $ cd pug
+```
+
+* You have the choice to save your actual package lists into Gists or not with `INSTALLGIST`:
+
+```bash
 $ sudo make install    (default: INSTALLGIST=1)
 ```
 
-## FAQ
+# FAQ
 
-### Gist for quick install
+## Gist for quick install
 
 The purpose of using Gist files is to quickly install your preferred packages on another system.
 
@@ -48,7 +53,7 @@ $ wget https://gist.githubusercontent.com/.../aur-list.pkg
 $ pacaur -S - < aur-list.txt
 ```
 
-### Change Gist filenames
+## Change Gist filenames
 
-Take a look at the sources into `src/pug.sh` or after installation into `/usr/lib/pug/pug.sh`.
+Take a look at the sources into `src/pug.sh` or after installation into `/opt/pug/pug.sh`.
 

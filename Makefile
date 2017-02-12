@@ -6,7 +6,7 @@ CFG		= pug
 HOOK	= src/pug.hook
 SCRIPT	= src/pug.sh
 
-all:
+INSTALLGIST  := 1
 
 install:
 	@mkdir -p $(CFGDIR)
@@ -16,7 +16,10 @@ install:
 	@chmod 644 $(CFGDIR)/$(shell basename $(CFG))
 	@cp $(SCRIPT) $(BINDIR)
 	@chmod 755 $(BINDIR)/$(shell basename $(SCRIPT))
-	@source $(BINDIR)/$(shell basename $(SCRIPT)); pug_install "$(DESTDIR)";
+	@if test "$(INSTALLGIST)" = "1" ; then \
+		source $(BINDIR)/$(shell basename $(SCRIPT)); \
+		pug_install "$(DESTDIR)"; \
+	fi
 	@cp $(HOOK) $(HOOKDIR)
 	@chmod 644 $(HOOKDIR)/$(shell basename $(HOOK))
 
@@ -24,5 +27,6 @@ uninstall:
 	$(RM) $(CFGDIR)/$(shell basename $(CFG))
 	$(RM) $(HOOKDIR)/$(shell basename $(HOOK))
 	$(RM) -r $(BINDIR)
+	$(RM) /root/.gist
 
-.PHONY: all install uninstall
+.PHONY: install uninstall

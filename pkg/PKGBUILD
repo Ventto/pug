@@ -13,19 +13,6 @@ source=('https://github.com/Ventto/bacpac/archive/master.zip')
 sha256sums=('SKIP')
 
 package() {
-
-  # Install config
-  mkdir -p "${pkgdir}/etc/"
-  touch "${pkgdir}/etc/bacpac"
-
-  # Install script
-  mkdir -p "${pkgdir}/usr/lib/bacpac"
   cd ${srcdir}/${pkgname}-master
-  install -Dm755 src/bacpac.sh ${pkgdir}/usr/lib/bacpac/bacpac.sh
-
-  source ${pkgdir}/usr/lib/bacpac/bacpac.sh; bacpac_install;
-
-  # Install hook
-  mkdir -p ${pkgdir}/usr/share/libalpm/hooks
-  install -Dm644 src/bacpac.hook ${pkgdir}/usr/share/libalpm/hooks/bacpac.hook
+  make DESTDIR="${pkgdir}" install
 }

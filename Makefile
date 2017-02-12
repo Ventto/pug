@@ -1,6 +1,6 @@
 CFGDIR  = $(DESTDIR)/etc
 HOOKDIR = $(DESTDIR)/usr/share/libalpm/hooks
-BINDIR  = $(DESTDIR)/usr/lib/pug
+BINDIR  = $(DESTDIR)/opt/pug
 
 CFG		= pug
 HOOK	= src/pug.hook

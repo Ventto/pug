@@ -1,15 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if test -t 1; then
-    ncolors=$(tput colors)
-    if test -n "$ncolors"; then
-        normal="$(tput sgr0)"
-        bold="$(tput bold)"
-        green="$(tput setaf 2)"
-        cyan="$(tput setaf 6)"
-        white="$(tput setaf 7)"
-    fi
-fi
+normal="$(tput sgr0)"
+bold="$(tput bold)"
+green="$(tput setaf 2)"
+cyan="$(tput setaf 6)"
+white="$(tput setaf 7)"
 
 pug_install() {
     [ -n "${1}" ] && [ ! -d "${1}" ] && exit 1
@@ -42,7 +37,6 @@ pug_install() {
 }
 
 pug_update() {
-    echo "${bold}[pug]"
     echo "${bold}${cyan}:: ${white} Updating package list gists...${normal}"
 
     if ! pacman -Qqen | gist -u "${GIST_NAT}" -f native-list.pkg ; then exit 1; fi

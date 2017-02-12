@@ -4,11 +4,6 @@
 !Makefile
 !README.md
 
-
-!pkg
-pkg/*
-!pkg/PKGBUILD
-
 !src
 src/*
 !src/pug.hook

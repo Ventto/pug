@@ -41,7 +41,7 @@ $ sudo make install (default: INSTALLGIST=1, gists creation)
 $ sudo make uninstall
 ```
 
-# Examples
+# Screenshots
 
 ![Gist revisions](doc/revisions.jpg)
 

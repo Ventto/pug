@@ -37,7 +37,7 @@ pug_install() {
 }
 
 pug_update() {
-    echo "${bold}${cyan}:: ${white} Updating package list gists...${normal}"
+    echo "${bold}${cyan}:: ${white} Processing gists update...${normal}"
 
     if ! pacman -Qqen | gist -u "${GIST_NAT}" -f native-list.pkg ; then exit 1; fi
     if ! pacman -Qqem | gist -u "${GIST_AUR}" -f aur-list.pkg;     then exit 1; fi

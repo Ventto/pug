@@ -48,7 +48,7 @@ $ sudo make uninstall
 
 # FAQ
 
-## Gist for quick install
+## Gist for quick deploy
 
 The purpose of using Gist files is to quickly install your preferred packages on another system.
 

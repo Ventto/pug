@@ -2,9 +2,9 @@ CFGDIR  = $(DESTDIR)/etc
 HOOKDIR = $(DESTDIR)/usr/share/libalpm/hooks
 BINDIR  = $(DESTDIR)/opt/pug
 
-CFG		= pug
-HOOK	= src/pug.hook
-SCRIPT	= src/pug.sh
+CFG     = pug
+HOOK    = src/pug.hook
+SCRIPT  = src/pug.sh
 
 INSTALLGIST  := 1
 
@@ -17,7 +17,7 @@ install:
 	@cp $(SCRIPT) $(BINDIR)
 	@chmod 755 $(BINDIR)/$(shell basename $(SCRIPT))
 	@if test "$(INSTALLGIST)" = "1" ; then \
-		source $(BINDIR)/$(shell basename $(SCRIPT)); \
+		. $(BINDIR)/$(shell basename $(SCRIPT)); \
 		pug_install "$(DESTDIR)"; \
 	fi
 	@cp $(HOOK) $(HOOKDIR)

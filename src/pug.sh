@@ -50,7 +50,7 @@ pug_update() {
 pug() {
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
-    test -r '/etc/pug' && source "${pkgdir}/etc/pug"
+    test -r '/etc/pug' && . "${pkgdir}/etc/pug"
 
     # Determine if fresh install is needed
     if test -z "${GIST_NAT}" || test -z "${GIST_AUR}"; then

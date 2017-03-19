@@ -10,10 +10,10 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 
 ## Perks
 
-* [x] **Painless**: do not care about remembering installed packages on your system.
-* [x] **Triggers**: install/remove a package and system upgrade.
-* [x] **Elegant**: as built-in, uses Pacman's term-output template and colors.
-* [x] **Extra**: Gists used for quick install on another system.
+* [x] **Painless**: Do not care about remembering installed packages on your system.
+* [x] **Triggers**: Installing, removing and upgrading pacakges triggers *pug*.
+* [x] **Elegant**: Fading into the background, *pug* uses the coloration of pacman's output.
+* [x] **Extra**: Leverage Gists to quickly install your package list on another system.
 
 ## Requirements
 
@@ -48,7 +48,7 @@ $ sudo make uninstall
 
 # FAQ
 
-## Gist for quick deploy
+## Leverage Gist for quick deployment
 
 The purpose of using Gist files is to quickly install your preferred packages on another system.
 

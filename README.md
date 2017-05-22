@@ -73,7 +73,6 @@ Take a look at the sources into `src/pug.sh` or after installation into `/opt/pu
 
 # TODO
 
-* [ ] Pre-install, selecting package-list-Gists to generate (pacman or aur or both).
-* [ ] Once triggered, you can choice to do not apply change on Gists.
-* [x] Avoiding a Gist revision when updating only known packages.
+* [ ] Choose to update only pacman package list, only AUR or both.
+* [ ] Once triggered, you can choice to do not update your Gists.
 

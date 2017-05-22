@@ -10,7 +10,7 @@ PACMANFILE='pacman-list.pkg'
 AURFILE='aur-list.pkg'
 
 pug_install() {
-    if [ -z "${1}" ] || [ ! -d "${1}" ]; then
+    if [ -n "${1}" ] && [ ! -d "${1}" ]; then
         echo "${1}: package directory not found."
         exit 1
     fi

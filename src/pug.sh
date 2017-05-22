@@ -46,8 +46,31 @@ pug_install() {
 pug_update() {
     echo "${bold}${cyan}::${white} Processing gists update...${normal}"
 
-    if ! pacman -Qqen | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then exit 1; fi
-    if ! pacman -Qqem | gist -u "${GIST_AUR}" -f "${AURFILE}";    then exit 1; fi
+    if ! gist -r "${GIST_NAT}" > /tmp/pacman.gist; then
+        echo "${bold}${red}::${white} Failed to read gist.${normal}"
+        exit 1
+    fi
+
+    pacman -Qqen > /tmp/pacman.list
+    if ! diff /tmp/pacman.gist /tmp/pacman.list > /dev/null 2>&1; then
+        if ! pacman -Qqen | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then
+            echo "${bold}${red}::${white} Failed to update.${normal}"
+            exit 1
+        fi
+    fi
+
+    if ! gist -r "${GIST_AUR}" > /tmp/aur.gist; then
+        echo "${bold}${red}::${white} Failed to read gist.${normal}"
+        exit 1
+    fi
+
+    pacman -Qqem > /tmp/aur.list
+    if ! diff /tmp/aur.gist /tmp/aur.list > /dev/null 2>&1; then
+        if ! pacman -Qqem | gist -u "${GIST_AUR}" -f "${AURFILE}"; then
+            echo "${bold}${red}::${white} Failed to update.${normal}"
+            exit 1
+        fi
+    fi
 }
 
 pug() {

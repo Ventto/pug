@@ -11,8 +11,9 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 ## Perks
 
 * [x] **Painless**: Do not care about remembering installed packages on your system.
-* [x] **Triggers**: Installing, removing and upgrading pacakges triggers *pug*.
+* [x] **Triggers**: Installing, removing and upgrading packages triggers *pug*.
 * [x] **Elegant**: Fading into the background, *pug* uses the coloration of pacman's output.
+* [x] **Smart**: Avoids Gist revisions when updating only known packages.
 * [x] **Extra**: Leverage Gists to quickly install your package list on another system.
 
 ## Requirements
@@ -74,5 +75,5 @@ Take a look at the sources into `src/pug.sh` or after installation into `/opt/pu
 
 * [ ] Pre-install, selecting package-list-Gists to generate (pacman or aur or both).
 * [ ] Once triggered, you can choice to do not apply change on Gists.
-* [ ] Avoiding a Gist revision if there is no modification in the package list.
+* [x] Avoiding a Gist revision when updating only known packages.
 

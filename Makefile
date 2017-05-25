@@ -2,31 +2,30 @@ CFGDIR  = $(DESTDIR)/etc
 HOOKDIR = $(DESTDIR)/usr/share/libalpm/hooks
 BINDIR  = $(DESTDIR)/opt/pug
 
-CFG     = pug
-HOOK    = src/pug.hook
-SCRIPT  = src/pug.sh
-
-INSTALLGIST  := 1
-
+.PHONY: install
 install:
 	@mkdir -p $(CFGDIR)
 	@mkdir -p $(HOOKDIR)
 	@mkdir -p $(BINDIR)
-	@touch $(CFGDIR)/$(CFG)
-	@chmod 644 $(CFGDIR)/$(shell basename $(CFG))
-	@cp $(SCRIPT) $(BINDIR)
-	@chmod 755 $(BINDIR)/$(shell basename $(SCRIPT))
-	@if test "$(INSTALLGIST)" = "1" ; then \
-		. $(BINDIR)/$(shell basename $(SCRIPT)); \
-		pug_install "$(DESTDIR)"; \
-	fi
-	@cp $(HOOK) $(HOOKDIR)
-	@chmod 644 $(HOOKDIR)/$(shell basename $(HOOK))
+	@mkdir -p $(DESTDIR)/root
+	@chmod 750 $(DESTDIR)/root
+	@touch $(CFGDIR)/pug
+	@if test -r /etc/pug.bkp; then cat /etc/pug.bkp > $(CFGDIR)/pug; fi
+	@chmod 644 $(CFGDIR)/pug
+	@cp src/pug.sh $(BINDIR)
+	@chmod 755 $(BINDIR)/pug.sh
+	@sh $(BINDIR)/pug.sh $(DESTDIR)
+	@cp src/pug.hook $(HOOKDIR)
+	@chmod 644 $(HOOKDIR)/pug.hook
 
+.PHONY: uninstall
 uninstall:
-	$(RM) $(CFGDIR)/$(shell basename $(CFG))
-	$(RM) $(HOOKDIR)/$(shell basename $(HOOK))
-	$(RM) -r $(BINDIR)
-	$(RM) /root/.gist
+	$(RM) $(CFGDIR)/pug
+	$(RM) $(HOOKDIR)/pug.hook
+	$(RM) $(DESTDIR)/root/.gist
+	$(RM) $(BINDIR)/pug.sh
 
-.PHONY: install uninstall
+.PHONY: distclean
+distclean: uninstall
+	$(RM) $(CFGDIR)/pug.bkp
+	$(RM) $(DESTDIR)/root/.gist.bkp

@@ -75,5 +75,4 @@ Take a look at the sources into `src/pug.sh` or after installation into `/opt/pu
 # TODO
 
 * [ ] Choose to update only pacman package list, only AUR or both.
-* [ ] Once triggered, you can choice to do not update your Gists.
 

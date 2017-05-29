@@ -69,7 +69,7 @@ $ xargs <aur-list.pkg pacaur -S
 
 ## Change Gist filenames
 
-Take a look at the sources into `src/pug.sh` or after installation into `/opt/pug/pug.sh`.
+Take a look at the sources into `src/pug.sh` or post-installation into `/opt/pug/pug.sh`.
 
 # TODO
 

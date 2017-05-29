@@ -19,7 +19,6 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 ## Requirements
 
 * *pacman* - A library-based package manager with dependency support
-* *pacaur* - An AUR helper that minimizes user interaction
 * *gist* - Potentially the best command line gister
 
 # Installation

@@ -65,7 +65,7 @@ $ pacman -S - < pacman-list.txt
 
 ```bash
 $ wget https://gist.githubusercontent.com/.../aur-list.pkg
-$ pacaur -S - < aur-list.txt
+$ xargs <aur-list.pkg pacaur -S
 ```
 
 ## Change Gist filenames

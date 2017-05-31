@@ -69,7 +69,7 @@ pug_update() {
 
     pacman -Qqen > /tmp/pacman.list
     if ! diff /tmp/pacman.gist /tmp/pacman.list > /dev/null 2>&1; then
-        if cat /tmp/pacman.list | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then
+        if ! cat /tmp/pacman.list | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then
             echo "${bold}${red}::${white} Failed to update.${normal}"
             exit 1
         fi

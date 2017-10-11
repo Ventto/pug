@@ -3,6 +3,7 @@ Pug
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/xpub/blob/master/LICENSE)
 [![Tools (Gist)](https://img.shields.io/badge/powered_by-Gist-brightgreen.svg)](https://github.com/defunkt/gist)
+[![Vote for pug](https://img.shields.io/badge/AUR-Vote_for-yellow.svg)](https://aur.archlinux.org/packages/pug/)
 
 *"Pug is a ALPM-hook to automatically save installed Pacman & AUR package lists into Gist files."*
 

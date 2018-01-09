@@ -11,11 +11,11 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 
 ## Perks
 
-* [x] **Painless**: Do not care about remembering installed packages on your system.
-* [x] **Triggers**: Installing, removing and upgrading packages triggers *pug*.
-* [x] **Elegant**: Fading into the background, *pug* uses the coloration of pacman's output.
-* [x] **Smart**: Avoids Gist revisions when updating only known packages.
-* [x] **Extra**: Leverage Gists to quickly install your package list on another system.
+* [x] **Painless**: Backup and easily restore package lists
+* [x] **Elegant**: Same text coloration than *pacman*
+* [x] **Smart**: Gist revision after each command if change
+
+![Gist revisions](doc/revisions.jpg)
 
 ## Requirements
 
@@ -23,6 +23,10 @@ Inspired by [*plist-gist*](https://github.com/DerekTBrown/plist-gist) and [*pacm
 * *gist* - Potentially the best command line gister
 
 # Installation
+
+The install process will ask your Github login to create Gist files and
+generate an OAuth2 access token.<br/>
+*pug* uses that token to update your Gists as needed.
 
 ### Package (AUR)
 
@@ -36,43 +40,24 @@ $ pacaur -S pug
 $ git clone https://github.com/Ventto/pug.git
 $ cd pug
 $ sudo make install (default: INSTALLGIST=1, gists creation)
-```
-
-### Uninstall
-
-```bash
+# Or Uninstall
 $ sudo make uninstall
 ```
 
-# Screenshots
+# Restore
 
-![Gist revisions](doc/revisions.jpg)
+Quickly install the package lists from Gists.
 
-# FAQ
-
-## Leverage Gist for quick deployment
-
-The purpose of using Gist files is to quickly install your preferred packages on another system.
-
-* Quick install the Pacman package list:
+* Install Pacman package list:
 
 ```bash
-$ wget https://gist.githubusercontent.com/.../pacman-list.pkg
-$ pacman -S - < pacman-list.txt
+$ wget -O pacman-list.pkg [URL]
+$ pacman -S - < pacman-list.pkg
 ```
 
-* Quick install the AUR package list:
+* Install AUR packag list:
 
 ```bash
-$ wget https://gist.githubusercontent.com/.../aur-list.pkg
+$ wget -O aur-list.pkg [URL]
 $ xargs <aur-list.pkg pacaur -S --noedit
 ```
-
-## Change Gist filenames
-
-Take a look at the sources into `src/pug.sh` or post-installation into `/opt/pug/pug.sh`.
-
-# TODO
-
-* [ ] Choose to update only pacman package list, only AUR or both.
-

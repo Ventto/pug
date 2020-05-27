@@ -28,10 +28,16 @@ The install process will ask your Github login to create Gist files and
 generate an OAuth2 access token.<br/>
 *pug* uses that token to update your Gists as needed.
 
-### Package (AUR)
+### Stable release package (AUR)
 
 ```bash
 $ pacaur -S pug
+```
+
+### Git package (AUR)
+
+```bash
+$ pacaur -S pug-hook-git
 ```
 
 ### Manually

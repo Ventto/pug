@@ -63,27 +63,27 @@ pug_update() {
     fi
 
     if ! gist -r "${GIST_NAT}" > /tmp/pacman.gist; then
-        echo "${bold}${red}::${white} Failed to read gist.${normal}"
+        echo "${bold}${red}::${white} Failed to read pacman gist.${normal}"
         exit 1
     fi
 
     pacman -Qqen > /tmp/pacman.list
     if ! diff /tmp/pacman.gist /tmp/pacman.list > /dev/null 2>&1; then
         if ! cat /tmp/pacman.list | gist -u "${GIST_NAT}" -f "${PACMANFILE}"; then
-            echo "${bold}${red}::${white} Failed to update.${normal}"
+            echo "${bold}${red}::${white} Failed to update pacman gist.${normal}"
             exit 1
         fi
     fi
 
     if ! gist -r "${GIST_AUR}" > /tmp/aur.gist; then
-        echo "${bold}${red}::${white} Failed to read gist.${normal}"
+        echo "${bold}${red}::${white} Failed to read AUR gist.${normal}"
         exit 1
     fi
 
     pacman -Qqem > /tmp/aur.list
     if ! diff /tmp/aur.gist /tmp/aur.list > /dev/null 2>&1; then
         if ! cat /tmp/aur.list | gist -u "${GIST_AUR}" -f "${AURFILE}"; then
-            echo "${bold}${red}::${white} Failed to update.${normal}"
+            echo "${bold}${red}::${white} Failed to update AUR gist.${normal}"
             exit 1
         fi
     fi

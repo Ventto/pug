@@ -7,8 +7,13 @@ green="$(tput setaf 2)"
 cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 
-PACMANFILE="$(hostname).pacman-list.pkg"
-AURFILE="$(hostname).aur-list.pkg"
+if type hostname > /dev/null 2>&1; then
+  PACMANFILE="$(hostname).pacman-list.pkg"
+  AURFILE="$(hostname).aur-list.pkg"
+else
+  PACMANFILE="${HOSTNAME}.pacman-list.pkg"
+  AURFILE="${HOSTNAME}.aur-list.pkg"
+fi
 
 pug_install() {
     echo "${bold}${green}==>${white} Authentification on Github..."

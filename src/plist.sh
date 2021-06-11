@@ -10,7 +10,7 @@ white="$(tput setaf 7)"
 PACMANFILE="$(hostname).pacman-list.pkg"
 AURFILE="$(hostname).aur-list.pkg"
 
-pug_install() {
+plist_install() {
     echo "${bold}${green}==>${white} Authentification on Github..."
 
     ! gist --login && exit 1
@@ -27,26 +27,26 @@ pug_install() {
     GIST_AUR=$(pacman -Qqem | gist -p -f "${AURFILE}" -d 'AUR package list.')
 
     echo "GIST_NAT=${GIST_NAT}" | \
-        sed 's/https:\/\/gist.github.com\///g' > "${pkgdir}/etc/pug";
+        sed 's/https:\/\/gist.github.com\///g' > "${pkgdir}/etc/plist";
     echo "GIST_AUR=${GIST_AUR}" | \
-        sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/pug";
+        sed 's/https:\/\/gist.github.com\///g' >> "${pkgdir}/etc/plist";
 
     echo "    [ ${cyan}${GIST_NAT}${white} ]"
     echo "    [ ${cyan}${GIST_AUR}${white} ]"
 }
 
-pug_update() {
+plist_update() {
     echo "${bold}${cyan}::${white} Processing gists update...${normal}"
 
-    # Force backup if updating pug
-    if test -f /etc/pug; then
-        cp /etc/pug /etc/pug.bkp
+    # Force backup if updating plist
+    if test -f /etc/plist; then
+        cp /etc/plist /etc/plist.bkp
     else
-        if test -f /etc/pug.bkp; then
-            cp /etc/pug.bkp /etc/pug
+        if test -f /etc/plist.bkp; then
+            cp /etc/plist.bkp /etc/plist
         else
-            echo "${bold}${red}::${white}/etc/pug: gist IDs file not found.${normal}"
-            echo "${bold}${red}::${white}/etc/pug.bkp: backup file not found.${normal}"
+            echo "${bold}${red}::${white}/etc/plist: gist IDs file not found.${normal}"
+            echo "${bold}${red}::${white}/etc/plist.bkp: backup file not found.${normal}"
             exit 1
         fi
     fi
@@ -89,7 +89,7 @@ pug_update() {
     fi
 }
 
-pug() {
+plist() {
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
     if [ -n "${1}" ] && [ ! -d "${1}" ]; then
@@ -99,21 +99,21 @@ pug() {
 
     pkgdir="${1}"
 
-    test -r ${pkgdir}/etc/pug && . ${pkgdir}/etc/pug
+    test -r ${pkgdir}/etc/plist && . ${pkgdir}/etc/plist
 
     # Determine if fresh install is needed
     if test -z "${GIST_NAT}" || test -z "${GIST_AUR}"; then
         echo "${bold}${cyan}::${white} Pug: fresh install is needed.${normal}"
-        pug_install "${pkgdir}"
+        plist_install "${pkgdir}"
     else
         IS_FAKEROOT=false
         if echo "${LD_LIBRARY_PATH}" | grep libfakeroot > /dev/null; then
             IS_FAKEROOT=true
         fi
         if [ "$(id -u)" -eq 0 ] && ! ${IS_FAKEROOT}; then
-            pug_update
+            plist_update
         fi
     fi
 }
 
-pug "$@"
+plist "$@"

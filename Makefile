@@ -1,6 +1,6 @@
 CFGDIR  = $(DESTDIR)/etc
 HOOKDIR = $(DESTDIR)/usr/share/libalpm/hooks
-BINDIR  = $(DESTDIR)/opt/pug
+BINDIR  = $(DESTDIR)/opt/plist
 
 .PHONY: install
 install:
@@ -9,23 +9,23 @@ install:
 	@mkdir -p $(BINDIR)
 	@mkdir -p $(DESTDIR)/root
 	@chmod 750 $(DESTDIR)/root
-	@touch $(CFGDIR)/pug
-	@if test -r /etc/pug.bkp; then cat /etc/pug.bkp > $(CFGDIR)/pug; fi
-	@chmod 644 $(CFGDIR)/pug
-	@cp src/pug.sh $(BINDIR)
-	@chmod 755 $(BINDIR)/pug.sh
-	@sh $(BINDIR)/pug.sh $(DESTDIR)
-	@cp src/pug.hook $(HOOKDIR)
-	@chmod 644 $(HOOKDIR)/pug.hook
+	@touch $(CFGDIR)/plist
+	@if test -r /etc/plist.bkp; then cat /etc/plist.bkp > $(CFGDIR)/plist; fi
+	@chmod 644 $(CFGDIR)/plist
+	@cp src/plist.sh $(BINDIR)
+	@chmod 755 $(BINDIR)/plist.sh
+	@sh $(BINDIR)/plist.sh $(DESTDIR)
+	@cp src/plist.hook $(HOOKDIR)
+	@chmod 644 $(HOOKDIR)/plist.hook
 
 .PHONY: uninstall
 uninstall:
-	$(RM) $(CFGDIR)/pug
-	$(RM) $(HOOKDIR)/pug.hook
+	$(RM) $(CFGDIR)/plist
+	$(RM) $(HOOKDIR)/plist.hook
 	$(RM) $(DESTDIR)/root/.gist
-	$(RM) $(BINDIR)/pug.sh
+	$(RM) $(BINDIR)/plist.sh
 
 .PHONY: distclean
 distclean: uninstall
-	$(RM) $(CFGDIR)/pug.bkp
+	$(RM) $(CFGDIR)/plist.bkp
 	$(RM) $(DESTDIR)/root/.gist.bkp

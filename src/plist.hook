@@ -8,4 +8,4 @@ Target = *
 [Action]
 Depends = coreutils
 When = PostTransaction
-Exec = /opt/pug/pug.sh
+Exec = /opt/plist/plist.sh

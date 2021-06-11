@@ -6,9 +6,5 @@
 
 !src
 src/*
-!src/pug.hook
-!src/pug.sh
-
-!doc/
-doc/*
-!doc/revisions.jpg
+!src/plist.hook
+!src/plist.sh
